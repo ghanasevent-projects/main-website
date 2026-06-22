@@ -105,11 +105,15 @@ export default async function Footer() {
     links: col.links.filter(link => !link.organiserOnly || showOrganiserLinks),
   })).filter(col => !col.organiserOnly || showOrganiserLinks)
 
+  const gridCols = columns.length >= 5
+    ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-5'
+    : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-4'
+
   return (
     <footer className="bg-[#1c1c3a] text-gray-400">
 
       <div className="mx-auto max-w-7xl px-4 py-12">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
+        <div className={`grid gap-8 ${gridCols}`}>
           {columns.map((col) => (
             <div key={col.heading}>
               <p className="mb-5 text-xs font-bold uppercase tracking-widest text-white">
