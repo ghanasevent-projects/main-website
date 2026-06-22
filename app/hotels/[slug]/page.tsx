@@ -121,7 +121,7 @@ export default async function HotelDetailPage({ params }: { params: Promise<{ sl
               <section className="mt-8 border-t border-gray-100 pt-8">
                 <h2 className="text-sm font-bold uppercase tracking-wide text-gray-500">Amenities</h2>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {hotel.amenities.map(a => (
+                  {hotel.amenities.map((a: string) => (
                     <span
                       key={a}
                       className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm capitalize text-gray-700"
