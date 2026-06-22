@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Flag of Ghana</title>
+  <desc id="desc">Three horizontal bands of red, gold, and green with a black star in the center.</desc>
+  <rect width="640" height="160" y="0" fill="#ce1126"/>
+  <rect width="640" height="160" y="160" fill="#fcd116"/>
+  <rect width="640" height="160" y="320" fill="#006b3f"/>
+  <path d="M320 192l15.3 47.1h49.5l-40 29 15.3 47.1L320 286.2l-40.1 29 15.3-47.1-40-29h49.5z" fill="#000"/>
+</svg>
