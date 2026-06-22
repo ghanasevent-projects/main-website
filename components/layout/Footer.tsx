@@ -45,6 +45,19 @@ const FOOTER_COLUMNS = [
     ],
   },
   {
+    heading: 'For Attendees',
+    links: [
+      { label: 'Browse Events',    href: '/events' },
+      { label: 'Free Events',      href: '/events?price=free' },
+      { label: 'Saved Events',     href: '/saved' },
+      { label: 'My Tickets',       href: '/attendee/tickets' },
+      { label: 'My Account',       href: '/account' },
+      { label: 'Hotels',           href: '/hotels' },
+      { label: 'Tourist Areas',    href: '/tourist-areas' },
+      { label: 'How It Works',     href: '/how-it-works' },
+    ],
+  },
+  {
     heading: 'Connect With Us',
     links: [
       { label: 'Contact Support', href: '/contact' },
@@ -96,7 +109,7 @@ export default async function Footer() {
     <footer className="bg-[#1c1c3a] text-gray-400">
 
       <div className="mx-auto max-w-7xl px-4 py-12">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
           {columns.map((col) => (
             <div key={col.heading}>
               <p className="mb-5 text-xs font-bold uppercase tracking-widest text-white">
