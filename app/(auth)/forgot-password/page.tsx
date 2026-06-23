@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
       setServerError('Please complete the verification check.')
       return
     }
-    const redirectTo = `${window.location.origin}/auth/callback?next=/reset-password`
+    const redirectTo = `${window.location.origin}/reset-password`
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo,
       captchaToken,

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -23,11 +23,32 @@ type FormData = z.infer<typeof schema>
 
 export default function ResetPasswordPage() {
   const router = useRouter()
+  const [ready, setReady] = useState(false)
+  const [sessionError, setSessionError] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [done, setDone] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const supabase = createClient()
+
+  // Exchange the one-time code from the email link for a client-side session
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const code = params.get('code')
+    if (code) {
+      supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
+        if (error) setSessionError('This reset link is invalid or has already been used. Please request a new one.')
+        else setReady(true)
+      })
+    } else {
+      // Fallback: maybe server-side exchange already set a session
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) setReady(true)
+        else setSessionError('Invalid or expired reset link. Please request a new one.')
+      })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const {
     register,
@@ -60,6 +81,32 @@ export default function ResetPasswordPage() {
           >
             Sign in now
           </Link>
+        </div>
+      </AuthPageShell>
+    )
+  }
+
+  if (sessionError) {
+    return (
+      <AuthPageShell title="Link expired" subtitle="This reset link is no longer valid">
+        <div className="space-y-6 text-center">
+          <p className="text-sm text-red-600">{sessionError}</p>
+          <Link
+            href="/forgot-password"
+            className="inline-block text-sm text-brand-500 font-medium hover:underline"
+          >
+            Request a new reset link
+          </Link>
+        </div>
+      </AuthPageShell>
+    )
+  }
+
+  if (!ready) {
+    return (
+      <AuthPageShell title="Verifying your link…" subtitle="Please wait a moment">
+        <div className="flex justify-center py-8">
+          <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
         </div>
       </AuthPageShell>
     )
