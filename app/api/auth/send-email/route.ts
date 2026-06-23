@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
 const FROM = process.env.RESEND_FROM_EMAIL ?? 'noreply@ghanasevents.com'
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME ?? 'GhanasEvent'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://ghanasevents.com'
+
+function getResend(): Resend | null {
+  const key = process.env.RESEND_API_KEY
+  if (!key) return null
+  return new Resend(key)
+}
 
 // Supabase calls this hook with a JSON body containing email_data
 // https://supabase.com/docs/guides/auth/auth-hooks#send-email-hook
@@ -48,6 +53,12 @@ export async function POST(req: NextRequest) {
     html = emailChangeHtml(user.email, confirmUrl)
   } else {
     return NextResponse.json({ error: 'Unknown email type' }, { status: 400 })
+  }
+
+  const resend = getResend()
+  if (!resend) {
+    console.error('[send-email hook] RESEND_API_KEY is not configured')
+    return NextResponse.json({ error: 'Email service not configured' }, { status: 503 })
   }
 
   const { error } = await resend.emails.send({
