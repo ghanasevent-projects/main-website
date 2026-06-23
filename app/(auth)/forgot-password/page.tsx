@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Loader2, Mail, ArrowLeft, CheckCircle2 } from 'lucide-react'
+import { Turnstile } from '@marsidev/react-turnstile'
 import { createClient } from '@/lib/supabase/client'
 import { AuthPageShell } from '@/components/auth/AuthPageShell'
 
@@ -16,6 +17,7 @@ type FormData = z.infer<typeof schema>
 export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false)
   const [sentEmail, setSentEmail] = useState('')
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
   const [serverError, setServerError] = useState<string | null>(null)
   const supabase = createClient()
 
@@ -27,8 +29,15 @@ export default function ForgotPasswordPage() {
 
   async function onSubmit({ email }: FormData) {
     setServerError(null)
+    if (!captchaToken) {
+      setServerError('Please complete the verification check.')
+      return
+    }
     const redirectTo = `${window.location.origin}/auth/callback?next=/reset-password`
-    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo })
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+      captchaToken,
+    })
     if (error) {
       setServerError(error.message)
       return
@@ -101,9 +110,15 @@ export default function ForgotPasswordPage() {
             )}
           </div>
 
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+            onSuccess={setCaptchaToken}
+            onExpire={() => setCaptchaToken(null)}
+          />
+
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !captchaToken}
             className="w-full h-10 bg-brand-500 hover:bg-brand-600 text-white font-medium
               rounded-md text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed
               flex items-center justify-center gap-2"
