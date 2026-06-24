@@ -158,6 +158,20 @@
   }
   .font-display { font-family: var(--font-syne),   system-ui, sans-serif; }
   .font-body    { font-family: var(--font-epilogue),  system-ui, sans-serif; }
+  .font-docs {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .font-docs h1,
+  .font-docs h2,
+  .font-docs h3,
+  .font-docs h4,
+  .font-docs h5,
+  .font-docs h6 {
+    font-family: inherit;
+    letter-spacing: -0.025em;
+  }
 }
 
 @keyframes hero-progress {
