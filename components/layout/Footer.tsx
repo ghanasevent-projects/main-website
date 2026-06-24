@@ -63,7 +63,7 @@ const FOOTER_COLUMNS = [
       { label: 'Contact Support', href: '/contact' },
       { label: 'About Us',        href: '/about' },
       { label: 'Blog',            href: '/blog' },
-      { label: 'Developer API',   href: '/developer', organiserOnly: true },
+      { label: 'Developer',       href: '/developer' },
       { label: 'Careers',         href: '/careers', organiserOnly: true },
       { label: 'Facebook',        href: 'https://facebook.com' },
       { label: 'Instagram',       href: 'https://instagram.com' },

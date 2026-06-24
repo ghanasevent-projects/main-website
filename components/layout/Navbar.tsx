@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
+      <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white" data-site-navbar>
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3">
 
           <SiteLogo size="md" priority />
