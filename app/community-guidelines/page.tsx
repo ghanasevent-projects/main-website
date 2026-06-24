@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ShieldCheck, AlertTriangle, MessageSquare, Users } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 export const metadata = {
   title: 'Community Guidelines',
@@ -15,7 +16,7 @@ export default function CommunityGuidelinesPage() {
           <section className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold-dark">
-                <Users className="h-3.5 w-3.5" />
+                <Users className={iconClassName('xs')} strokeWidth={ICON_STROKE_WIDTH} />
                 Community standards
               </p>
               <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-5xl" style={{ fontFamily: 'var(--font-syne, sans-serif)' }}>
@@ -36,7 +37,7 @@ export default function CommunityGuidelinesPage() {
                 const Icon = card.icon
                 return (
                   <div key={card.title} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                    <Icon className="h-5 w-5 text-gold" />
+                    <Icon className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                     <p className="mt-3 text-sm font-semibold text-gray-900">{card.title}</p>
                     <p className="mt-2 text-sm text-gray-600">{card.text}</p>
                   </div>

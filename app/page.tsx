@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import {
   ChevronRight, Music2, Briefcase, Globe2, Theater, Heart,
-  Cpu, UtensilsCrossed, Trophy, Moon, GraduationCap,
+  Cpu, UtensilsCrossed, Trophy, Martini, GraduationCap,
   Film, Shirt, Home, Star, Users, Gift, Gamepad2,
   ArrowRight, CalendarCheck, TicketCheck, MapPinned,
-  Car, HeartHandshake, Landmark, Activity, Palette, Flame,
+  Car, HeartHandshake, Landmark, Activity, Church,
   Ticket, Zap, BadgeCheck, Shield,
 } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
@@ -14,56 +14,61 @@ import HomeDestinations from '@/components/home/HomeDestinations'
 import QuickDiscovery from '@/components/home/QuickDiscovery'
 import TrendingTicker from '@/components/home/TrendingTicker'
 import EventCard  from '@/components/events/EventCard'
+import HorizontalScrollRow from '@/components/ui/HorizontalScrollRow'
 import type { HotelListing } from '@/components/hotels/HotelCard'
 import { getSavedEventIds, getFollowingFeedEvents } from '@/lib/social'
 import { showCreateEventsNav } from '@/lib/roles'
+import { ICON_STROKE_WIDTH } from '@/lib/icons'
 
 
 const CAT_ICONS: Record<string, React.ReactNode> = {
-  'music':                    <Music2          size={22} strokeWidth={1.4} />,
-  'nightlife':                <Moon            size={22} strokeWidth={1.4} />,
-  'film-media':               <Film            size={22} strokeWidth={1.4} />,
-  'film_media':               <Film            size={22} strokeWidth={1.4} />,
-  'film-&-media':             <Film            size={22} strokeWidth={1.4} />,
-  'performing-visual-arts':   <Theater         size={22} strokeWidth={1.4} />,
-  'performing_visual_arts':   <Theater         size={22} strokeWidth={1.4} />,
-  'arts-culture':             <Palette         size={22} strokeWidth={1.4} />,
-  'business':                 <Briefcase       size={22} strokeWidth={1.4} />,
-  'science-tech':             <Cpu             size={22} strokeWidth={1.4} />,
-  'science_tech':             <Cpu             size={22} strokeWidth={1.4} />,
-  'science-&-tech':           <Cpu             size={22} strokeWidth={1.4} />,
-  'government':               <Landmark        size={22} strokeWidth={1.4} />,
-  'food-drink':               <UtensilsCrossed size={22} strokeWidth={1.4} />,
-  'food_drink':               <UtensilsCrossed size={22} strokeWidth={1.4} />,
-  'food-&-drink':             <UtensilsCrossed size={22} strokeWidth={1.4} />,
-  'health':                   <Activity        size={22} strokeWidth={1.4} />,
-  'sports-fitness':           <Trophy          size={22} strokeWidth={1.4} />,
-  'sports_fitness':           <Trophy          size={22} strokeWidth={1.4} />,
-  'home-lifestyle':           <Home            size={22} strokeWidth={1.4} />,
-  'home_lifestyle':           <Home            size={22} strokeWidth={1.4} />,
-  'home-&-lifestyle':         <Home            size={22} strokeWidth={1.4} />,
-  'fashion':                  <Shirt           size={22} strokeWidth={1.4} />,
-  'community':                <Users           size={22} strokeWidth={1.4} />,
-  'charity-causes':           <HeartHandshake  size={22} strokeWidth={1.4} />,
-  'charity_causes':           <HeartHandshake  size={22} strokeWidth={1.4} />,
-  'charity-&-causes':         <HeartHandshake  size={22} strokeWidth={1.4} />,
-  'spirituality':             <Flame           size={22} strokeWidth={1.4} />,
-  'family-education':         <GraduationCap   size={22} strokeWidth={1.4} />,
-  'family_education':         <GraduationCap   size={22} strokeWidth={1.4} />,
-  'family-&-education':       <GraduationCap   size={22} strokeWidth={1.4} />,
-  'dating':                   <Heart           size={22} strokeWidth={1.4} />,
-  'hobbies':                  <Gamepad2        size={22} strokeWidth={1.4} />,
-  'holidays':                 <Gift            size={22} strokeWidth={1.4} />,
-  'travel-outdoor':           <Globe2          size={22} strokeWidth={1.4} />,
-  'travel_outdoor':           <Globe2          size={22} strokeWidth={1.4} />,
-  'auto-boat-air':            <Car             size={22} strokeWidth={1.4} />,
-  'auto_boat_air':            <Car             size={22} strokeWidth={1.4} />,
-  'auto-boat-&-air':          <Car             size={22} strokeWidth={1.4} />,
+  'music':                    <Music2          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'nightlife':                <Martini         size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'film-media':               <Film            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'film_media':               <Film            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'film-&-media':             <Film            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'performing-visual-arts':   <Theater         size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'performing_visual_arts':   <Theater         size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'arts-culture':             <Theater         size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'business':                 <Briefcase       size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'science-tech':             <Cpu             size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'science_tech':             <Cpu             size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'science-&-tech':           <Cpu             size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'government':               <Landmark        size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'food-drink':               <UtensilsCrossed size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'food_drink':               <UtensilsCrossed size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'food-&-drink':             <UtensilsCrossed size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'health':                   <Activity        size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'sports-fitness':           <Trophy          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'sports_fitness':           <Trophy          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'home-lifestyle':           <Home            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'home_lifestyle':           <Home            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'home-&-lifestyle':         <Home            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'fashion':                  <Shirt           size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'community':                <Users           size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'charity-causes':           <HeartHandshake  size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'charity_causes':           <HeartHandshake  size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'charity-&-causes':         <HeartHandshake  size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'spirituality':             <Church          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'religion':                 <Church          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'family-education':         <GraduationCap   size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'family_education':         <GraduationCap   size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'family-&-education':       <GraduationCap   size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'dating':                   <Heart           size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'hobbies':                  <Gamepad2        size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'holidays':                 <Gift            size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'travel-outdoor':           <Globe2          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'travel_outdoor':           <Globe2          size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'auto-boat-air':            <Car             size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'auto_boat_air':            <Car             size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
+  'auto-boat-&-air':          <Car             size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />,
 }
 
 function getCatIcon(slug: string): React.ReactNode {
   const key = slug.toLowerCase().trim()
-  return CAT_ICONS[key] ?? CAT_ICONS[key.replace(/-/g, '_')] ?? <Star size={22} strokeWidth={1.4} />
+  return CAT_ICONS[key] ?? CAT_ICONS[key.replace(/-/g, '_')] ?? (
+    <Star size={22} strokeWidth={ICON_STROKE_WIDTH} className="text-gray-900" />
+  )
 }
 
 // Category pill shared between mobile and desktop
@@ -76,8 +81,8 @@ function CategoryPill({
 }) {
   const circleClass =
     size === 'sm'
-      ? 'flex h-14 w-14 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-gray-500 transition group-hover:border-[#C9973A] group-hover:bg-amber-50 group-hover:text-[#C9973A]'
-      : 'flex h-16 w-16 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-gray-500 transition group-hover:border-[#C9973A] group-hover:bg-amber-50 group-hover:text-[#C9973A]'
+      ? 'flex h-14 w-14 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-900 transition group-hover:border-gray-300 group-hover:shadow-sm'
+      : 'flex h-16 w-16 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-900 transition group-hover:border-gray-300 group-hover:shadow-sm'
 
   const labelClass =
     size === 'sm'
@@ -228,16 +233,19 @@ export default async function HomePage() {
       <section className="border-b border-gray-100 bg-white px-4 py-8">
         <div className="mx-auto max-w-7xl">
 
-          {/* ── Mobile: horizontal scroll (hidden on md+) */}
-          <div
-            className="flex gap-5 overflow-x-auto pb-2 md:hidden"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {categories.map(cat => (
-              <div key={cat.id} className="shrink-0">
-                <CategoryPill cat={cat} size="sm" />
-              </div>
-            ))}
+          {/* ── Mobile & tablet: horizontal scroll (grid from md+) */}
+          <div className="md:hidden">
+            <HorizontalScrollRow
+              hideArrowsFrom="md"
+              wrapperClassName="-mx-2 px-2"
+              className="flex gap-5 overflow-x-auto pb-2"
+            >
+              {categories.map(cat => (
+                <div key={cat.id} className="shrink-0">
+                  <CategoryPill cat={cat} size="sm" />
+                </div>
+              ))}
+            </HorizontalScrollRow>
           </div>
 
           {/* ── Desktop: exactly 5 per row, max 2 rows = 10 (hidden below md) */}
@@ -316,7 +324,29 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="-mx-1 mb-4 flex items-center gap-2 overflow-x-auto px-1 pb-1 sm:mb-6">
+          <HorizontalScrollRow
+            hideArrowsFrom="md"
+            wrapperClassName="-mx-2 mb-4 px-2 sm:mb-6 md:hidden"
+            className="flex items-center gap-2 overflow-x-auto pb-1"
+          >
+            {[
+              { label: 'All', href: '/events' },
+              { label: 'Today', href: '/events?date=today' },
+              { label: 'This weekend', href: '/events?date=weekend' },
+              { label: 'Free', href: '/events?price=free' },
+              { label: 'Paid', href: '/events?price=paid' },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="h-9 shrink-0 rounded-full border border-gray-300 bg-white px-4 text-sm font-semibold text-gray-700 transition hover:border-gray-400"
+              >
+                <span className="inline-flex h-full items-center">{item.label}</span>
+              </Link>
+            ))}
+          </HorizontalScrollRow>
+
+          <div className="mb-4 hidden flex-wrap items-center gap-2 sm:mb-6 md:flex">
             {[
               { label: 'All', href: '/events' },
               { label: 'Today', href: '/events?date=today' },
@@ -430,19 +460,19 @@ export default async function HomePage() {
             {[
               {
                 step: '01',
-                icon:  <MapPinned    className="h-7 w-7 text-gold" />,
+                icon:  <MapPinned     className="h-7 w-7 text-gray-900" strokeWidth={ICON_STROKE_WIDTH} />,
                 title: 'Find events near you',
                 desc:  'Browse events by region, category, or date across all 16 regions of Ghana. Filter by price, type, and more.',
               },
               {
                 step: '02',
-                icon:  <TicketCheck  className="h-7 w-7 text-gold" />,
+                icon:  <TicketCheck   className="h-7 w-7 text-gray-900" strokeWidth={ICON_STROKE_WIDTH} />,
                 title: 'Buy tickets instantly',
                 desc:  'Secure checkout with MTN MoMo, Telecel Cash, AirtelTigo Money, Visa, and Mastercard.',
               },
               {
                 step: '03',
-                icon:  <CalendarCheck className="h-7 w-7 text-gold" />,
+                icon:  <CalendarCheck className="h-7 w-7 text-gray-900" strokeWidth={ICON_STROKE_WIDTH} />,
                 title: 'Show up and enjoy',
                 desc:  'Get your QR code ticket by email. Scan and go — no printing, no hassle.',
               },
@@ -453,10 +483,8 @@ export default async function HomePage() {
               >
                 {/* Step number circle */}
                 <div className="relative z-10 mb-5 flex h-20 w-20 items-center justify-center
-                                rounded-full border-2 border-gold/20 bg-white shadow-md">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gold/10">
-                    {item.icon}
-                  </div>
+                                rounded-full border border-gray-200 bg-white shadow-sm">
+                  {item.icon}
                   <span
                     className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center
                                rounded-full bg-gold text-[10px] font-extrabold text-white shadow"
@@ -479,9 +507,9 @@ export default async function HomePage() {
           {/* Trust badges */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
             {[
-              { icon: <Shield className="h-4 w-4 text-green-600" />, label: 'SSL Secured payments' },
-              { icon: <BadgeCheck className="h-4 w-4 text-blue-600" />, label: 'Verified organisers' },
-              { icon: <TicketCheck className="h-4 w-4 text-gold" />, label: 'Instant QR tickets' },
+              { icon: <Shield className="h-4 w-4 text-gray-900" strokeWidth={ICON_STROKE_WIDTH} />, label: 'SSL Secured payments' },
+              { icon: <BadgeCheck className="h-4 w-4 text-gray-900" strokeWidth={ICON_STROKE_WIDTH} />, label: 'Verified organisers' },
+              { icon: <TicketCheck className="h-4 w-4 text-gray-900" strokeWidth={ICON_STROKE_WIDTH} />, label: 'Instant QR tickets' },
             ].map(badge => (
               <div
                 key={badge.label}

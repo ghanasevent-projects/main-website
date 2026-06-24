@@ -289,7 +289,7 @@ export default async function EventDetailPage({
                     </div>
                   ) : (
                     <div className="mt-5 flex items-start gap-2 rounded-lg bg-gray-50 p-4 text-sm text-gray-600">
-                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gray-900" strokeWidth={1.5} />
                       <span>
                         {event.venue_name}
                         {event.address ? `, ${event.address}` : ''}

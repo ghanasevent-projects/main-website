@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Globe2, Ticket, Users, ShieldCheck } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 export const metadata = {
   title: 'About Us',
@@ -48,7 +49,7 @@ export default function AboutPage() {
                 const Icon = card.icon
                 return (
                   <div key={card.title} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                    <Icon className="h-5 w-5 text-gold" />
+                    <Icon className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                     <p className="mt-3 text-sm font-semibold text-gray-900">{card.title}</p>
                     <p className="mt-2 text-sm text-gray-600">{card.text}</p>
                   </div>

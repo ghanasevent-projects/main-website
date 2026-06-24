@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, BookOpen, Sparkles } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 export const metadata = {
   title: 'Blog',
@@ -27,7 +28,7 @@ export default function BlogPage() {
           <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold-dark">
-                <Sparkles className="h-3.5 w-3.5" />
+                <Sparkles className={iconClassName('xs')} strokeWidth={ICON_STROKE_WIDTH} />
                 Insights and updates
               </p>
               <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-5xl" style={{ fontFamily: 'var(--font-syne, sans-serif)' }}>
@@ -60,9 +61,7 @@ export default function BlogPage() {
                 {POSTS.map((post) => (
                   <article key={post.title} className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
                     <div className="flex items-start gap-3">
-                      <div className="rounded-xl bg-gold/10 p-2 text-gold">
-                        <BookOpen className="h-4 w-4" />
-                      </div>
+                      <BookOpen className={iconClassName('sm')} strokeWidth={ICON_STROKE_WIDTH} />
                       <div>
                         <h2 className="text-lg font-bold text-gray-900">{post.title}</h2>
                         <p className="mt-2 text-sm text-gray-600">{post.excerpt}</p>
@@ -84,7 +83,7 @@ export default function BlogPage() {
                 <li>Platform updates and feature releases</li>
               </ul>
               <Link href="/contact" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:underline">
-                Pitch a story <ArrowRight className="h-4 w-4" />
+                Pitch a story <ArrowRight className={iconClassName('sm')} strokeWidth={ICON_STROKE_WIDTH} />
               </Link>
             </div>
           </section>

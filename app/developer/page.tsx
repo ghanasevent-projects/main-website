@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Code2, Zap, Shield, Globe, ChevronRight, Terminal, Key, Webhook, BookOpen } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 const ENDPOINTS = [
   {
@@ -66,7 +67,7 @@ export default function DeveloperPage() {
       <section className="border-b border-gray-200 bg-gray-50 px-4 py-16">
         <div className="mx-auto max-w-4xl">
           <div className="mb-4 flex items-center gap-2">
-            <Code2 className="h-5 w-5 text-[#C9973A]" />
+            <Code2 className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
             <span className="text-xs font-bold uppercase tracking-widest text-[#C9973A]">Developer</span>
           </div>
           <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl" style={{ fontFamily: 'var(--font-syne, sans-serif)' }}>
@@ -91,19 +92,19 @@ export default function DeveloperPage() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { icon: <Zap className="h-5 w-5 text-[#C9973A]" />,     title: 'Fast',      desc: 'Responses in under 200ms globally' },
-            { icon: <Shield className="h-5 w-5 text-[#C9973A]" />,  title: 'Secure',    desc: 'JWT auth via Supabase, webhook HMAC verification' },
-            { icon: <Globe className="h-5 w-5 text-[#C9973A]" />,   title: 'RESTful',   desc: 'Standard REST conventions, JSON responses' },
-            { icon: <Webhook className="h-5 w-5 text-[#C9973A]" />, title: 'Webhooks',  desc: 'Real-time event notifications via Paystack' },
-          ].map((f) => (
+            { icon: Zap,     title: 'Fast',      desc: 'Responses in under 200ms globally' },
+            { icon: Shield,  title: 'Secure',    desc: 'JWT auth via Supabase, webhook HMAC verification' },
+            { icon: Globe,   title: 'RESTful',   desc: 'Standard REST conventions, JSON responses' },
+            { icon: Webhook, title: 'Webhooks',  desc: 'Real-time event notifications via Paystack' },
+          ].map((f) => {
+            const Icon = f.icon
+            return (
             <div key={f.title} className="rounded-xl border border-gray-200 p-5">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#C9973A]/10">
-                {f.icon}
-              </div>
+              <Icon className={`mb-3 ${iconClassName('md')}`} strokeWidth={ICON_STROKE_WIDTH} />
               <p className="mb-1 text-sm font-semibold text-gray-900">{f.title}</p>
               <p className="text-xs text-gray-500">{f.desc}</p>
             </div>
-          ))}
+          )})}
         </div>
 
         <div>
@@ -117,9 +118,7 @@ export default function DeveloperPage() {
           <h2 className="mb-4 text-xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-syne, sans-serif)' }}>Authentication</h2>
           <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-4">
             <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[#C9973A]/10">
-                <Key className="h-4 w-4 text-[#C9973A]" />
-              </div>
+              <Key className={`mt-0.5 ${iconClassName('sm')}`} strokeWidth={ICON_STROKE_WIDTH} />
               <div>
                 <p className="mb-1 text-sm font-semibold text-gray-900">Supabase JWT Bearer Token</p>
                 <p className="text-sm text-gray-500">Protected endpoints require a valid JWT from Supabase Auth.</p>
@@ -193,9 +192,7 @@ export default function DeveloperPage() {
 
         <div className="rounded-2xl border border-[#C9973A]/20 bg-[#C9973A]/5 p-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#C9973A]/10">
-              <BookOpen className="h-5 w-5 text-[#C9973A]" />
-            </div>
+            <BookOpen className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
             <div>
               <p className="mb-1 font-semibold text-gray-900">Need API access?</p>
               <p className="mb-3 text-sm text-gray-500">The API is currently in private beta. Contact us to request access.</p>

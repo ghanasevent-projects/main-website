@@ -9,6 +9,7 @@ import {
   Ticket,
 } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 export const metadata = {
   title: 'How It Works',
@@ -67,7 +68,7 @@ export default function HowItWorksPage() {
           <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold-dark">
-                <CalendarCheck2 className="h-3.5 w-3.5" />
+                <CalendarCheck2 className={iconClassName('xs')} strokeWidth={ICON_STROKE_WIDTH} />
                 Event growth platform
               </p>
               <h1 className="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-5xl" style={{ fontFamily: 'var(--font-syne, sans-serif)' }}>
@@ -131,7 +132,7 @@ export default function HowItWorksPage() {
                   <div key={step.title} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
                     <div className="mb-3 flex items-center justify-between">
                       <span className="rounded-full bg-gold/10 px-2.5 py-1 text-xs font-bold text-gold-dark">Step {index + 1}</span>
-                      <Icon className="h-5 w-5 text-gold" />
+                      <Icon className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                     </div>
                     <h3 className="text-base font-bold text-gray-900">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-gray-600">{step.text}</p>
@@ -169,12 +170,12 @@ export default function HowItWorksPage() {
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                  <QrCode className="h-5 w-5 text-gold" />
+                  <QrCode className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                   <p className="mt-2 text-sm font-semibold text-gray-900">One-scan validation</p>
                   <p className="mt-1 text-xs text-gray-600">Simple and reliable scanning for on-site teams.</p>
                 </div>
                 <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                  <ShieldCheck className="h-5 w-5 text-gold" />
+                  <ShieldCheck className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                   <p className="mt-2 text-sm font-semibold text-gray-900">Fraud protection</p>
                   <p className="mt-1 text-xs text-gray-600">Duplicate or invalid ticket attempts are flagged instantly.</p>
                 </div>
@@ -193,17 +194,17 @@ export default function HowItWorksPage() {
 
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                <BarChart3 className="h-5 w-5 text-gold" />
+                <BarChart3 className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                 <p className="mt-3 text-sm font-semibold text-gray-900">Clear performance insights</p>
                 <p className="mt-2 text-sm text-gray-600">Track demand, conversion, and sales trends to make better decisions event after event.</p>
               </div>
               <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                <Megaphone className="h-5 w-5 text-gold" />
+                <Megaphone className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                 <p className="mt-3 text-sm font-semibold text-gray-900">Built-in discovery channels</p>
                 <p className="mt-2 text-sm text-gray-600">Get found through homepage placements, category browsing, and city-level search visibility.</p>
               </div>
               <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                <ShieldCheck className="h-5 w-5 text-gold" />
+                <ShieldCheck className={iconClassName('md')} strokeWidth={ICON_STROKE_WIDTH} />
                 <p className="mt-3 text-sm font-semibold text-gray-900">Trusted checkout flow</p>
                 <p className="mt-2 text-sm text-gray-600">Reliable payment integration and ticket delivery designed for attendee confidence.</p>
               </div>

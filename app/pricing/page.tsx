@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Check, Sparkles, TrendingUp, Users, ShieldCheck, BarChart3 } from 'lucide-react'
 import SiteShell from '@/components/layout/SiteShell'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 const PLANS = [
   {
@@ -46,7 +47,7 @@ export default function PricingPage() {
           <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold-dark">
-                <Sparkles className="h-3.5 w-3.5" />
+                <Sparkles className={iconClassName('xs')} strokeWidth={ICON_STROKE_WIDTH} />
                 Flexible pricing for organisers
               </p>
               <h1 className="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-5xl" style={{ fontFamily: 'var(--font-syne, sans-serif)' }}>
@@ -90,7 +91,7 @@ export default function PricingPage() {
                   const Icon = card.icon
                   return (
                     <div key={card.title} className="rounded-2xl border border-white/20 bg-black/35 p-3 text-white backdrop-blur-sm">
-                      <Icon className="h-4 w-4 text-gold" />
+                      <Icon className="h-4 w-4 text-white" strokeWidth={ICON_STROKE_WIDTH} />
                       <p className="mt-2 text-sm font-semibold">{card.title}</p>
                       <p className="mt-1 text-xs text-white/80">{card.text}</p>
                     </div>
@@ -129,7 +130,7 @@ export default function PricingPage() {
                   <ul className="mt-5 space-y-3 text-sm text-gray-700">
                     {plan.points.map((point) => (
                       <li key={point} className="flex items-start gap-2">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                        <Check className={`mt-0.5 ${iconClassName('sm')}`} strokeWidth={ICON_STROKE_WIDTH} />
                         <span>{point}</span>
                       </li>
                     ))}
