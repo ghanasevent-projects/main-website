@@ -46,7 +46,7 @@ export default function NavUserMenu({ name, role }: Props) {
                    transition hover:border-gray-300 hover:bg-gray-50"
       >
         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9973A]/10">
-          <User className="h-3.5 w-3.5 text-[#C9973A]" />
+          <User className="h-3.5 w-3.5 text-gray-900" strokeWidth={1.5} />
         </div>
         <span className="hidden max-w-24 truncate sm:block">{name}</span>
         <ChevronDown className={`h-3.5 w-3.5 text-gray-400 transition-transform

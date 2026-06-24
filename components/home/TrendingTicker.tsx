@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Flame } from 'lucide-react'
+import { ICON_STROKE_WIDTH, iconClassName } from '@/lib/icons'
 
 const TRENDING_TAGS = [
   { label: 'Afrobeats Night', href: '/events?q=afrobeats' },
@@ -28,8 +29,8 @@ export default function TrendingTicker() {
         {/* Label */}
         <div className="z-10 flex shrink-0 items-center gap-1.5 rounded-r-full bg-white
                         pl-4 pr-4 py-1.5 shadow-sm border border-l-0 border-gray-200">
-          <Flame className="h-3.5 w-3.5 text-orange-500" />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-orange-600 whitespace-nowrap">
+          <Flame className={iconClassName('xs')} strokeWidth={ICON_STROKE_WIDTH} />
+          <span className="text-[11px] font-bold uppercase tracking-widest text-gray-900 whitespace-nowrap">
             Trending
           </span>
         </div>

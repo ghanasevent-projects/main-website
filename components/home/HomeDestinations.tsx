@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
+import HorizontalScrollRow from '@/components/ui/HorizontalScrollRow'
 import DestinationCard from '@/components/home/DestinationCard'
 import HotelCard, { type HotelListing } from '@/components/hotels/HotelCard'
 import {
@@ -45,13 +46,13 @@ export default function HomeDestinations({ touristAreas, hotels }: HomeDestinati
             </Link>
           </div>
 
-          {/* Mobile: horizontal scroll */}
-          <div
-            className="flex gap-4 overflow-x-auto pb-2 sm:hidden"
-            style={{ scrollbarWidth: 'none' }}
+          <HorizontalScrollRow
+            hideArrowsFrom="md"
+            wrapperClassName="-mx-2 px-2 md:mx-0 md:px-0"
+            className="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible lg:grid-cols-4"
           >
             {TOP_CITY_DESTINATIONS.map(dest => (
-              <div key={`${dest.city}-${dest.region}`} className="w-[48vw] shrink-0">
+              <div key={`${dest.city}-${dest.region}`} className="w-[48vw] shrink-0 md:w-auto">
                 <DestinationCard
                   href={cityEventsHref(dest.city, dest.region)}
                   label={dest.city}
@@ -60,20 +61,7 @@ export default function HomeDestinations({ touristAreas, hotels }: HomeDestinati
                 />
               </div>
             ))}
-          </div>
-
-          {/* Desktop: 4-column grid, 2 rows */}
-          <div className="hidden sm:grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4">
-            {TOP_CITY_DESTINATIONS.map(dest => (
-              <DestinationCard
-                key={`${dest.city}-${dest.region}`}
-                href={cityEventsHref(dest.city, dest.region)}
-                label={dest.city}
-                imageUrl={dest.imageUrl}
-                subtitle={dest.region}
-              />
-            ))}
-          </div>
+          </HorizontalScrollRow>
         </div>
       </section>
 
@@ -102,17 +90,19 @@ export default function HomeDestinations({ touristAreas, hotels }: HomeDestinati
           </div>
 
           {hotels.length > 0 ? (
-            <div
-              className="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible
-                         md:grid-cols-3 lg:grid-cols-4 lg:gap-5"
-              style={{ scrollbarWidth: 'none' }}
+            <HorizontalScrollRow
+              hideArrowsFrom="md"
+              edgeFadeClass="from-[#fdfbf7]"
+              wrapperClassName="-mx-2 px-2 md:mx-0 md:px-0"
+              className="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:overflow-visible
+                         lg:grid-cols-3 xl:grid-cols-4 lg:gap-5"
             >
               {hotels.map(hotel => (
-                <div key={hotel.id} className="w-[70vw] shrink-0 sm:w-auto">
+                <div key={hotel.id} className="w-[70vw] shrink-0 md:w-auto">
                   <HotelCard hotel={hotel} variant="home" />
                 </div>
               ))}
-            </div>
+            </HorizontalScrollRow>
           ) : (
             <div className="rounded-2xl border border-gray-200 bg-white p-5 text-sm text-gray-500 sm:p-6">
               No hotels found in current event locations.
@@ -159,13 +149,14 @@ export default function HomeDestinations({ touristAreas, hotels }: HomeDestinati
           </div>
 
           {touristAreas.length > 0 ? (
-            <div
-              className="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible
-                         md:grid-cols-3 lg:grid-cols-4 lg:gap-5"
-              style={{ scrollbarWidth: 'none' }}
+            <HorizontalScrollRow
+              hideArrowsFrom="md"
+              wrapperClassName="-mx-2 px-2 md:mx-0 md:px-0"
+              className="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:overflow-visible
+                         lg:grid-cols-3 xl:grid-cols-4 lg:gap-5"
             >
               {touristAreas.map(area => (
-                <div key={area.id} className="w-[70vw] shrink-0 sm:w-auto">
+                <div key={area.id} className="w-[70vw] shrink-0 md:w-auto">
                   <DestinationCard
                     href={`/tourist-areas/${buildAreaSlug(area.id, area.name)}`}
                     label={area.name}
@@ -175,7 +166,7 @@ export default function HomeDestinations({ touristAreas, hotels }: HomeDestinati
                   />
                 </div>
               ))}
-            </div>
+            </HorizontalScrollRow>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[

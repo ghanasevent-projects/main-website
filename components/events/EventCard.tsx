@@ -80,7 +80,7 @@ export default function EventCard({
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-linear-to-br
                           from-gold/10 to-gold/5">
-            <Ticket className="h-10 w-10 text-gold/40" />
+            <Ticket className="h-10 w-10 text-gray-300" strokeWidth={1.5} />
           </div>
         )}
 

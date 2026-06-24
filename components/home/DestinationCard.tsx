@@ -66,7 +66,7 @@ export default function DestinationCard({
           <div className="flex translate-y-4 items-center gap-1.5 opacity-0 transition-all
                           duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <span className="text-xs font-semibold text-white/90">Browse events</span>
-            <ArrowRight className="h-3.5 w-3.5 text-gold" />
+            <ArrowRight className="h-3.5 w-3.5 text-white/90" strokeWidth={1.5} />
           </div>
         </div>
       </div>

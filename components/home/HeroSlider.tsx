@@ -12,9 +12,9 @@ const SLIDES = [
     eyebrow: 'Church Events Across Ghana',
     title: 'Worship.\nTogether.',
     subtitle: 'Join thousands of believers across Ghana for powerful worship experiences, conventions, and district services.',
-    cta:          { label: 'Find Church Events',    href: '/events?category=religion' },
+    cta:          { label: 'Find Church Events',    href: '/events?category=spirituality' },
     secondaryCta: { label: 'Learn more',            href: '/events' },
-    icon: <Church className="h-5 w-5" />,
+    icon: <Church className="h-5 w-5 text-white" strokeWidth={1.5} />,
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const SLIDES = [
     subtitle: 'From Highlife to Afrobeats — the best live concerts, festivals, and shows happening in Greater Accra.',
     cta:          { label: 'Get Concert Tickets',   href: '/events?category=music&region=Greater+Accra' },
     secondaryCta: { label: 'Browse all music',      href: '/events?category=music' },
-    icon: <Music2 className="h-5 w-5" />,
+    icon: <Music2 className="h-5 w-5 text-white" strokeWidth={1.5} />,
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const SLIDES = [
     subtitle: "Kpando Senior High School SRC Week — concerts, debates, sports, and the most anticipated student events in Ghana.",
     cta:          { label: 'Get SRC Week Tickets',  href: '/events?q=SRC+Week+Kpasec' },
     secondaryCta: { label: 'View schedule',          href: '/events?q=Kpasec' },
-    icon: <GraduationCap className="h-5 w-5" />,
+    icon: <GraduationCap className="h-5 w-5 text-white" strokeWidth={1.5} />,
   },
 ]
 
@@ -69,9 +69,9 @@ export default function HeroSlider() {
   const slide = SLIDES[current]
 
   const STATS = [
-    { icon: <Ticket  className="h-4 w-4" />, value: '1,200+', label: 'Events listed' },
-    { icon: <MapPin  className="h-4 w-4" />, value: '16',     label: 'Regions covered' },
-    { icon: <Users   className="h-4 w-4" />, value: '300+',   label: 'Organisers' },
+    { icon: <Ticket  className="h-4 w-4 text-white/90" strokeWidth={1.5} />, value: '1,200+', label: 'Events listed' },
+    { icon: <MapPin  className="h-4 w-4 text-white/90" strokeWidth={1.5} />, value: '16',     label: 'Regions covered' },
+    { icon: <Users   className="h-4 w-4 text-white/90" strokeWidth={1.5} />, value: '300+',   label: 'Organisers' },
   ]
 
   return (
@@ -110,7 +110,7 @@ export default function HeroSlider() {
 
         {/* Eyebrow */}
         <div className="mb-4 flex items-center gap-2.5">
-          <div className="flex items-center justify-center rounded-full bg-gold p-1.5 text-white shadow-lg shadow-gold/30">
+          <div className="flex items-center justify-center text-white">
             {slide.icon}
           </div>
           <span className="text-xs font-bold uppercase tracking-widest text-gold">
@@ -165,7 +165,7 @@ export default function HeroSlider() {
                 className="flex items-center gap-2 rounded-full border border-white/15
                            bg-black/30 px-4 py-2 backdrop-blur-md"
               >
-                <span className="text-gold">{stat.icon}</span>
+                <span>{stat.icon}</span>
                 <span
                   className="text-sm font-extrabold text-white"
                   style={{ fontFamily: 'var(--font-syne, sans-serif)' }}

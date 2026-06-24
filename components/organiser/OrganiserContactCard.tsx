@@ -183,7 +183,7 @@ export default function OrganiserContactCard({
             />
           ) : (
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gold/10 ring-2 ring-gold/20">
-              <User className="h-6 w-6 text-gold" />
+              <User className="h-6 w-6 text-gray-900" strokeWidth={1.5} />
             </div>
           )}
 

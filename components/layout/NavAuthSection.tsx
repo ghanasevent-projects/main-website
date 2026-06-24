@@ -143,7 +143,7 @@ export default function NavAuthSection({ variant = 'dropdown', onNavigate }: Nav
             />
           ) : (
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 ring-2 ring-gold/20">
-              <User className="h-5 w-5 text-gold" />
+              <User className="h-5 w-5 text-gray-900" strokeWidth={1.5} />
             </div>
           )}
           <div className="min-w-0">
@@ -211,7 +211,7 @@ export default function NavAuthSection({ variant = 'dropdown', onNavigate }: Nav
           />
         ) : (
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gold/10">
-            <User className="h-3.5 w-3.5 text-gold" />
+            <User className="h-3.5 w-3.5 text-gray-900" strokeWidth={1.5} />
           </div>
         )}
         <span className="hidden max-w-24 truncate sm:block">{profile.name}</span>
