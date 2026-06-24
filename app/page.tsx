@@ -11,6 +11,7 @@ import {
 import SiteShell from '@/components/layout/SiteShell'
 import HeroSlider from '@/components/home/HeroSlider'
 import HomeDestinations from '@/components/home/HomeDestinations'
+import QuickDiscovery from '@/components/home/QuickDiscovery'
 import TrendingTicker from '@/components/home/TrendingTicker'
 import EventCard  from '@/components/events/EventCard'
 import type { HotelListing } from '@/components/hotels/HotelCard'
@@ -252,77 +253,7 @@ export default async function HomePage() {
       {/* ── TRENDING TICKER ─────────────────────────────────────── */}
       <TrendingTicker />
 
-      {/* ── QUICK DISCOVERY ─────────────────────────────────────── */}
-      <section className="border-b border-gray-100 bg-[#fdfbf7] px-4 py-10 sm:py-12">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {([
-              {
-                label: 'Free Events',
-                sublabel: 'No ticket needed',
-                href: '/events?is_free=true',
-                iconBg: 'bg-[#006B3F]/10',
-                iconColor: 'text-[#006B3F]',
-                ring: 'hover:ring-[#006B3F]/20',
-                icon: <Gift className="h-5 w-5" />,
-              },
-              {
-                label: 'Music & Concerts',
-                sublabel: 'Live performances',
-                href: '/events?category=music',
-                iconBg: 'bg-[#C9973A]/10',
-                iconColor: 'text-[#C9973A]',
-                ring: 'hover:ring-[#C9973A]/20',
-                icon: <Music2 className="h-5 w-5" />,
-              },
-              {
-                label: 'Food & Drink',
-                sublabel: 'Tastes of Ghana',
-                href: '/events?category=food-drink',
-                iconBg: 'bg-[#CE1126]/8',
-                iconColor: 'text-[#CE1126]',
-                ring: 'hover:ring-[#CE1126]/20',
-                icon: <UtensilsCrossed className="h-5 w-5" />,
-              },
-              {
-                label: 'Business & Tech',
-                sublabel: 'Grow your network',
-                href: '/events?category=business',
-                iconBg: 'bg-brand-500/8',
-                iconColor: 'text-brand-500',
-                ring: 'hover:ring-brand-500/20',
-                icon: <Briefcase className="h-5 w-5" />,
-              },
-            ] as const).map(quickLink => (
-              <Link
-                key={quickLink.label}
-                href={quickLink.href}
-                className={`group flex items-center gap-4 rounded-2xl border border-gray-200
-                            bg-white p-4 shadow-sm ring-2 ring-transparent
-                            transition duration-200 hover:border-gray-300 hover:shadow-md
-                            hover:-translate-y-0.5 sm:p-5 ${quickLink.ring}`}
-              >
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center
-                                rounded-xl ${quickLink.iconBg} ${quickLink.iconColor}
-                                transition duration-200 group-hover:scale-110`}>
-                  {quickLink.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p
-                    className="truncate text-sm font-bold text-gray-900 sm:text-[15px]"
-                    style={{ fontFamily: 'var(--font-syne, sans-serif)' }}
-                  >
-                    {quickLink.label}
-                  </p>
-                  <p className="mt-0.5 truncate text-xs text-gray-500">{quickLink.sublabel}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 shrink-0 text-gray-300 transition duration-200
-                                        group-hover:translate-x-0.5 group-hover:text-gray-500" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <QuickDiscovery />
 
       {/* ── FROM ORGANISERS YOU FOLLOW ──────────────────────────── */}
       {followingFeed.length > 0 && (
