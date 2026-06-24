@@ -188,6 +188,8 @@ export default function DeveloperDocsLayout({ breadcrumbs, nav, children }: Prop
   const activeLabel = flatNav.find(item => item.id === activeId)?.label ?? 'Introduction'
   const docsBarHeight = 49
   const scrollOffset = siteNavHeight + docsBarHeight + 12
+  const drawerOffsetTop = siteNavHeight > 0 ? siteNavHeight : 56
+  const drawerHeaderHeight = 65
 
   useEffect(() => {
     const elements = flatNav
@@ -270,13 +272,16 @@ export default function DeveloperDocsLayout({ breadcrumbs, nav, children }: Prop
         <SheetContent
           side="left"
           showCloseButton={false}
-          offsetTop={siteNavHeight > 0 ? siteNavHeight : undefined}
+          offsetTop={drawerOffsetTop}
           overlayClassName="bg-black/40 supports-backdrop-filter:backdrop-blur-sm"
-          className={`${GeistSans.variable} font-docs w-[min(85vw,340px)] gap-0 border-r border-gray-200 bg-white p-0 shadow-xl sm:max-w-none`}
+          className={`${GeistSans.variable} font-docs flex min-h-0 w-[min(85vw,340px)] flex-col gap-0 overflow-hidden border-r border-gray-200 bg-white p-0 shadow-xl sm:max-w-none`}
         >
           <SheetTitle className="sr-only">Documentation navigation</SheetTitle>
 
-          <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+          <div
+            data-docs-drawer-header
+            className="flex shrink-0 items-center justify-between border-b border-gray-100 px-5 py-4"
+          >
             <div className="flex items-center gap-2.5">
               <Terminal
                 className="h-5 w-5 text-gold"
@@ -293,7 +298,13 @@ export default function DeveloperDocsLayout({ breadcrumbs, nav, children }: Prop
             </SheetClose>
           </div>
 
-          <nav className="flex-1 overflow-y-auto px-2 py-6">
+          <nav
+            aria-label="Documentation sections"
+            className="min-h-0 flex-1 touch-pan-y overflow-x-hidden overflow-y-auto overscroll-y-contain px-2 py-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]"
+            style={{
+              maxHeight: `calc(100dvh - ${drawerOffsetTop}px - ${drawerHeaderHeight}px)`,
+            }}
+          >
             <DocsNavList
               nav={nav}
               activeId={activeId}
