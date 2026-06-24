@@ -1,19 +1,19 @@
 import {
   Music2, Briefcase, Globe2, Theater, Heart, Cpu, UtensilsCrossed, Trophy,
-  Moon, GraduationCap, Film, Shirt, Home, Star, Users, Gift, Gamepad2,
-  Car, HeartHandshake, Landmark, Activity, Palette, Flame, Tag,
+  GraduationCap, Film, Shirt, Home, Star, Users, Gift, Gamepad2,
+  Car, HeartHandshake, Landmark, Activity, Church, Tag, Martini,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 const SLUG_ICONS: Record<string, ReactNode> = {
   music: <Music2 size={18} strokeWidth={1.5} />,
-  nightlife: <Moon size={18} strokeWidth={1.5} />,
+  nightlife: <Martini size={18} strokeWidth={1.5} className="text-gray-900" />,
   'film-media': <Film size={18} strokeWidth={1.5} />,
   film_media: <Film size={18} strokeWidth={1.5} />,
   'film-&-media': <Film size={18} strokeWidth={1.5} />,
   'performing-visual-arts': <Theater size={18} strokeWidth={1.5} />,
   performing_visual_arts: <Theater size={18} strokeWidth={1.5} />,
-  'arts-culture': <Palette size={18} strokeWidth={1.5} />,
+  'arts-culture': <Theater size={18} strokeWidth={1.5} className="text-gray-900" />,
   business: <Briefcase size={18} strokeWidth={1.5} />,
   'science-tech': <Cpu size={18} strokeWidth={1.5} />,
   science_tech: <Cpu size={18} strokeWidth={1.5} />,
@@ -33,7 +33,8 @@ const SLUG_ICONS: Record<string, ReactNode> = {
   'charity-causes': <HeartHandshake size={18} strokeWidth={1.5} />,
   charity_causes: <HeartHandshake size={18} strokeWidth={1.5} />,
   'charity-&-causes': <HeartHandshake size={18} strokeWidth={1.5} />,
-  spirituality: <Flame size={18} strokeWidth={1.5} />,
+  spirituality: <Church size={18} strokeWidth={1.5} className="text-gray-900" />,
+  religion: <Church size={18} strokeWidth={1.5} className="text-gray-900" />,
   'family-education': <GraduationCap size={18} strokeWidth={1.5} />,
   family_education: <GraduationCap size={18} strokeWidth={1.5} />,
   'family-&-education': <GraduationCap size={18} strokeWidth={1.5} />,
